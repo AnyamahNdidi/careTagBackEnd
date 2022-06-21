@@ -4,7 +4,7 @@ const url =
 
 const urls = "mongodb://localhost/careTag";
 
-mongoose.connect(urls).then(() => {
+mongoose.connect(url).then(() => {
 	console.log("database connected...");
 });
 
