@@ -70,7 +70,7 @@ const Register = async (req, res) => {
             html: `
             <h3>
                 This mail, is for account verification... Please use the <a
-                href="http://localhost:2001/api/admin/${creatUser._id}/${token}"
+                href="http://localhost:3000/api/admin/${creatUser._id}/${token}"
                 >Link to Finish</a> up your account creation 
             </h3>
             `,
