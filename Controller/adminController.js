@@ -70,7 +70,7 @@ const Register = async (req, res) => {
             html: `
             <h3>
                 This mail, is for account verification... Please use the <a
-                href="http://localhost:3000/api/admin/${creatUser._id}/${token}"
+                href="https://caretag.netlify.app/api/admin/${creatUser._id}/${token}"
                 >Link to Finish</a> up your account creation 
             </h3>
             `,
@@ -161,7 +161,7 @@ const SignIn = async (req, res)=>{
 						html: `
                         <h3>
                       This mail, is for account verification... Please use the <a
-                       href="http://localhost:2001/api/admin/${user._id}/${
+                       href="https://caretag.netlify.app/api/admin/${user._id}/${
 							code.split(" ")[-1]
 						}"
                         >Link to Finish</a> up your account creation 
@@ -177,7 +177,7 @@ const SignIn = async (req, res)=>{
                         }
                     })
                     res.status(200).json({
-                        message :"please go to your mail to verify your account"
+                        message :"Account is not verify go to your mail to verify account"
                     })
                 }
 
