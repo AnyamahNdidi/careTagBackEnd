@@ -46,14 +46,15 @@ const Register = async (req, res) => {
         const salt = await bcrypt.genSalt(10)
         const hash = await bcrypt.hash(password, salt)
 
-        const getToken = crypto.randomBytes(10).toString("hex");
+        const getToken = crypto.randomBytes(4).toString("hex");
 		const token = jwt.sign({ getToken }, "ThisIsTheCode");
 
         const code = `organizationCode: ${token} ${getToken}`;
+        
 
         const creatUser = await adminModel.create({
             fullName,
-            organizationCode:code,
+            organizationCode:getToken,
             organizationName,
             avatar: Image.secure_url,
             avatarID: Image.public_id,

@@ -15,6 +15,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/admin", require("./Router/adminRouter"))
+app.use("/api/agent", require("./Router/agentRouter"))
 
 
 

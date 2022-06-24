@@ -6,6 +6,9 @@ const urls = "mongodb://localhost/careTag";
 
 mongoose.connect(url).then(() => {
 	console.log("database connected...");
-});
+}).catch((error) =>
+{
+	console.log("error in connetion", error)
+})
 
 module.exports = mongoose;

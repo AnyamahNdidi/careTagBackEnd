@@ -5,6 +5,7 @@ const adminModel = mongoose.Schema(
 		fullName: {
 			type: String,
 		},
+		
 		organizationName: {
 			type: String,
 		},
