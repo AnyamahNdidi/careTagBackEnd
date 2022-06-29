@@ -13,7 +13,7 @@ const createAgent = async (req, res) =>
 {
     try
     {
-        const { agentName, password, organizationCode } = req.body
+        const { agentName, password, organizationCode,location} = req.body
         const getAgentCode = await adminModel.findOne({ organizationCode })
         
         if (getAgentCode)
@@ -34,6 +34,7 @@ const createAgent = async (req, res) =>
             {
                 const newAgent = new agentModel({
                     agentName,
+                    location,
                     organizationName:getOrganization.organizationName,
                     email: `${emailData1}@${emailData}.com`,
                     password: hash,
@@ -59,7 +60,7 @@ const createAgent = async (req, res) =>
             
         } else
         {
-            res.status(400).json({message :"wrong code please check"})
+            res.status(400).json({message :"Wrong Organization Code "})
         }
         
     } catch (error)
