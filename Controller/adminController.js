@@ -58,7 +58,7 @@ const Register = async (req, res) => {
             organizationName,
             avatar: Image.secure_url,
             avatarID: Image.public_id,
-            email,
+            email:email,
             password:hash,
             verifiedToken:token,
             
