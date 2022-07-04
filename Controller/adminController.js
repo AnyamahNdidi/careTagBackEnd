@@ -183,11 +183,11 @@ const SignIn = async (req, res)=>{
                 }
 
             }else{
-                res.status(400).json({message :"wrong password"})
+                res.status(401).json({message :"wrong password"})
             }
     
         }else{
-            res.status(400).json({message :"user is not register"})
+            res.status(401).json({message :"user is not register"})
         }
 
     }catch(error){
