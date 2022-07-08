@@ -194,13 +194,38 @@ const SignIn = async (req, res)=>{
         res.status(400).json({message: error.message})
     }
   
-
-
-    
 }
 
+const getAgent = async (req, res) =>
+{
+    try
+    {
+        const getAllAgent = await (await adminModel.findById(req.params.id)).populate(
+            {path: "agent", options:{sort: {createdAt :-1}}}
+        )
+        res.status(200).json({message:"all agent", data: getAllAgent})
+    } catch (error)
+    {
+        res.status(400).json({message: error.message})
+    }
+}
+const getRecentOne = async (req, res) =>
+{
+    try
+    {
+        const getAllAgent = await (await adminModel.findById(req.params.id)).populate(
+            {path: "agent", options:{sort: {createdAt :-1}, limit:1}}
+        )
+        res.status(200).json({message:"all agent", data: getAllAgent})
+    } catch (error)
+    {
+        res.status(400).json({message: error.message})
+    }
+}
 module.exports ={
     Register,
     verifiedOrganization,
-    SignIn
+    SignIn,
+    getAgent,
+    getRecentOne
 }
