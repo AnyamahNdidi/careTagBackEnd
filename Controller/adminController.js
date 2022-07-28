@@ -200,7 +200,7 @@ const getAgent = async (req, res) =>
 {
     try
     {
-        const getAllAgent = await (await adminModel.findById(req.params.id)).populate(
+        const getAllAgent = await  adminModel.findById(req.params.id).populate(
             {path: "agent", options:{sort: {createdAt :-1}}}
         )
         res.status(200).json({message:"all agent", data: getAllAgent})
@@ -213,10 +213,47 @@ const getRecentOne = async (req, res) =>
 {
     try
     {
-        const getAllAgent = await (await adminModel.findById(req.params.id)).populate(
+        const getAllAgent = await adminModel.findById(req.params.id).populate(
             {path: "agent", options:{sort: {createdAt :-1}, limit:1}}
         )
         res.status(200).json({message:"all agent", data: getAllAgent})
+    } catch (error)
+    {
+        res.status(400).json({message: error.message})
+    }
+}
+
+const allOrganization = async (req, res) =>
+{
+    try
+    {
+        const view = await adminModel.find().populate( {path: "agent", options:{sort: {createdAt :-1}}})
+        res.status(200).json({
+            message: "all organization",
+            data:view
+        })
+        
+    } catch (error)
+    {
+        res.status(400).json({message: error.message})
+    }
+}
+
+
+const searchOrganization = async (req, res) =>
+{
+    try
+    {
+        const keyword = req.query.search ? {
+            $or:[
+      
+             {organizationName: {$regex:req.query.search, $options:"i"}},
+             {organizationName: {$regex:req.query.search, $options:'i'}},
+            ]
+            
+        } : {}
+        const dataBy = await adminModel.find(keyword).populate( {path: "agent", options:{sort: {createdAt :-1}}})
+          res.status(200).send(dataBy)
     } catch (error)
     {
         res.status(400).json({message: error.message})
@@ -227,5 +264,7 @@ module.exports ={
     verifiedOrganization,
     SignIn,
     getAgent,
-    getRecentOne
+    getRecentOne,
+    allOrganization,
+    searchOrganization
 }
