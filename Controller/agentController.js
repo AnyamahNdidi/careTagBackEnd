@@ -13,7 +13,7 @@ const createAgent = async (req, res) =>
 {
     try
     {
-        const { agentName, password, organizationCode,location} = req.body
+        const { agentName, password, organizationCode,dlocation} = req.body
         const getAgentCode = await adminModel.findOne({ organizationCode })
         
         if (getAgentCode)
@@ -34,7 +34,7 @@ const createAgent = async (req, res) =>
             {
                 const newAgent = new agentModel({
                     agentName,
-                    location,
+                    dlocation,
                     organizationName:getOrganization.organizationName,
                     email: `${emailData1}@${emailData}.com`,
                     password: hash,
