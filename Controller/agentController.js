@@ -115,7 +115,20 @@ const LogInAgent = async (req, res) =>
     }
 }
 
+const getSingleAgent = async (req, res) =>
+{
+    try
+    {
+        const getOneAgrnt = await agentModel.findById(req.params.id)
+        res.status(200).json({message:"one data", getOneAgrnt})
+    } catch (error)
+    {
+        res.status(400).json({message: error.message})
+    }
+}
+
 module.exports ={
     createAgent,
-    LogInAgent
+    LogInAgent,
+    getSingleAgent
 }
