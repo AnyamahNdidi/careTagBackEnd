@@ -127,8 +127,30 @@ const getSingleAgent = async (req, res) =>
     }
 }
 
+const deleteAgent = async (req, res) =>
+{
+    try
+    {
+        const adminUser = await adminModel.findById(req.params.id)
+        const deleteAgent = await agentModel.findByIdAndRemove(req.params.agents)
+
+        adminUser.agent.pull(deleteAgent)
+        adminUser.save()
+
+        res.status(201).json({
+            message: "agent has been deleted",
+            adminUser,
+        })
+        
+    } catch (error)
+    {
+        res.status(400).json({message:error.message})
+    }
+}
+
 module.exports ={
     createAgent,
     LogInAgent,
-    getSingleAgent
+    getSingleAgent,
+    deleteAgent
 }
