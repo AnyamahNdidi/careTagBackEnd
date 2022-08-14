@@ -141,6 +141,9 @@ const deleteAgent = async (req, res) =>
             message: "agent has been deleted",
             adminUser,
         })
+
+
+        
         
     } catch (error)
     {
